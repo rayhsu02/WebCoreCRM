@@ -1,5 +1,7 @@
 ﻿using DataAccess.Model;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace DataAccess
@@ -14,7 +16,7 @@ namespace DataAccess
         }
         public dynamic GetCustomerContacts(int customerId)
         {
-            return _dbContext;
+            return _dbContext.Customer.ToList();
         }
 
         public dynamic GetCustomers()
