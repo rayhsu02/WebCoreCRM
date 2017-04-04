@@ -1,4 +1,5 @@
 ﻿using DataAccess.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +15,30 @@ namespace DataAccess
         {
             _dbContext = context;
         }
+
+        public dynamic GetContact(int contactId)
+        {
+            return _dbContext.CustomerContacts.SingleOrDefault(s => s.CustomerContactId == contactId);
+        }
+
+        public dynamic GetCustomer(int id)
+        {
+            return _dbContext.Customer.SingleOrDefaultAsync(c => c.CustomerId == id);
+        }
+
         public dynamic GetCustomerContacts(int customerId)
         {
-            return _dbContext.Customer.ToList();
+            return _dbContext.CustomerContacts.AsEnumerable();
         }
 
         public dynamic GetCustomers()
         {
-            throw new NotImplementedException();
+            return _dbContext.Customer.AsEnumerable();
         }
 
         public dynamic GetIndustryTypes()
         {
-            throw new NotImplementedException();
+            return _dbContext.IndustryType.AsEnumerable();
         }
     }
 }

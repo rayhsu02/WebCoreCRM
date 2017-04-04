@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using WebCRM.Data;
 using WebCRM.Models;
 using WebCRM.Services;
+using DataAccess.Model;
+using DataAccess;
 
 namespace WebCRM
 {
@@ -48,6 +50,11 @@ namespace WebCRM
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+
+            services.AddDbContext<WebCRMDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IWebCRMRepository, WebCRMRepository>();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();

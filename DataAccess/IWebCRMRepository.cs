@@ -8,7 +8,11 @@ namespace DataAccess
     {
         dynamic GetCustomers();
 
+        dynamic GetCustomer(int id);
+
         dynamic GetCustomerContacts(int customerId);
+
+        dynamic GetContact(int contactId);
 
         dynamic GetIndustryTypes();
 

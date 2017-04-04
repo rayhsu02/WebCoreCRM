@@ -23,11 +23,16 @@ namespace DataAccess.Model
         public virtual DbSet<CustomerContacts> CustomerContacts { get; set; }
         public virtual DbSet<IndustryType> IndustryType { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=PCFS-DT-12\SQLEXPRESS;Database=WebCRMDB;Trusted_Connection=True;");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+        //    optionsBuilder.UseSqlServer(@"Server=PCFS-DT-12\SQLEXPRESS;Database=WebCRMDB;Trusted_Connection=True;");
+        //}
+
+        public WebCRMDBContext(DbContextOptions<WebCRMDBContext> options)
+    : base(options)
+        { }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
