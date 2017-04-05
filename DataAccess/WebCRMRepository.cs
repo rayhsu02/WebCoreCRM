@@ -40,5 +40,12 @@ namespace DataAccess
         {
             return _dbContext.IndustryType.AsEnumerable();
         }
+
+        public dynamic SaveCustomer(Customer customer)
+        {
+            _dbContext.Entry(customer).State = EntityState.Added;
+            _dbContext.SaveChangesAsync();
+            return GetCustomers();
+        }
     }
 }

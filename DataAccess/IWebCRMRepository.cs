@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,11 +11,15 @@ namespace DataAccess
 
         dynamic GetCustomer(int id);
 
+        dynamic SaveCustomer(Customer customer);
+
         dynamic GetCustomerContacts(int customerId);
 
         dynamic GetContact(int contactId);
 
         dynamic GetIndustryTypes();
+
+       
 
     }
 }
