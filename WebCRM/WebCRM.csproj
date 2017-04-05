@@ -37,8 +37,5 @@
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\Controllers\" />
-  </ItemGroup>
 
 </Project>
