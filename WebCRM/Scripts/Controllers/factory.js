@@ -20,8 +20,10 @@
             return $http.get('/api/Customers/').then(handleSuccess, handleError('Error getting all customers'));
         }
 
-        function addNewCustomer() {
+        function addNewCustomer(newCustomer) {
             console.log('addNewCustomer');
+            console.log(newCustomer);
+            return $http.post('/api/Customers/', newCustomer).then(handleSuccess, handleError('Error creating new Customer'));
         }
 
         // private functions

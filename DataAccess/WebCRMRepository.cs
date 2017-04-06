@@ -44,8 +44,8 @@ namespace DataAccess
         public dynamic SaveCustomer(Customer customer)
         {
             _dbContext.Entry(customer).State = EntityState.Added;
-            _dbContext.SaveChangesAsync();
-            return GetCustomers();
+           return _dbContext.SaveChanges();
+          
         }
     }
 }

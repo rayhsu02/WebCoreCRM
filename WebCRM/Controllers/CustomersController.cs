@@ -84,20 +84,24 @@ namespace WebCRM.Controllers
         //    return NoContent();
         //}
 
-        //// POST: api/Customers
-        //[HttpPost]
-        //public async Task<IActionResult> PostCustomer([FromBody] Customer customer)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // POST: api/Customers
+        [HttpPost]
+        public IActionResult PostCustomer([FromBody] Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    _context.Customer.Add(customer);
-        //    await _context.SaveChangesAsync();
+           int x =  _repo.SaveCustomer(customer);
 
-        //    return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
-        //}
+            return Ok();
+
+            //_context.Customer.Add(customer);
+            //await _context.SaveChangesAsync();
+
+           // return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
+        }
 
         //// DELETE: api/Customers/5
         //[HttpDelete("{id}")]
