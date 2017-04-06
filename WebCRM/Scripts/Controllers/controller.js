@@ -13,6 +13,7 @@
         $scope.title = "customerController";
         $scope.allCustomers = [];
         $scope.getAllCustomer = getAllCustomer;
+        $scope.addCustomer = addCustomer;
         $scope.init = init;
 
         function init() {
@@ -52,6 +53,10 @@
                        console.log($scope.allCustomers)
                     }
                 });
+        }
+
+        function addCustomer() {
+            console.log('addCustomer');
         }
     }
 })();
