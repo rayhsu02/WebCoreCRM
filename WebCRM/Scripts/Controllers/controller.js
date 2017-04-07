@@ -20,6 +20,7 @@
 
         $scope.master = {};
         $scope.reset = function () {
+            console.log('reset');
             $scope.newCompany = angular.copy($scope.master);
         };
         
@@ -80,11 +81,17 @@
             console.log('addCustomer');
             console.log(newCompany);
 
-            crmService.addNewCustomer(newCompany);
+            crmService.addNewCustomer(newCompany)
+                .then(function (res) {
+                    console.log(res);
+                    getAllCustomer();
+
+                    closeModal();
+                }, function () {
+                    alert(res);
+                });
            
-            getAllCustomer();
-           
-            closeModal();
+          
         }
 
         function closeModal() {

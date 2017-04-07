@@ -23,7 +23,7 @@
         function addNewCustomer(newCustomer) {
             console.log('addNewCustomer');
             console.log(newCustomer);
-            return $http.post('/api/Customers/', newCustomer).then(handleSuccess, handleError('Error creating new Customer'));
+            return $http.post('/api/Customers/', newCustomer);
         }
 
         // private functions
