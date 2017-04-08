@@ -14,6 +14,9 @@ using WebCRM.Models;
 using WebCRM.Services;
 using DataAccess.Model;
 using DataAccess;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace WebCRM
 {
@@ -79,6 +82,13 @@ namespace WebCRM
             }
 
             app.UseStaticFiles();
+
+           // app.UseStaticFiles(new StaticFileOptions()
+           // {
+           //     FileProvider = new PhysicalFileProvider(
+           //Path.Combine(Directory.GetCurrentDirectory(), @"Templates")),
+           //     RequestPath = new PathString("/template")
+           // });
 
             app.UseIdentity();
 

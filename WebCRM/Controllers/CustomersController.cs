@@ -86,14 +86,14 @@ namespace WebCRM.Controllers
 
         // POST: api/Customers
         [HttpPost]
-        public IActionResult PostCustomer([FromBody] Customer customer)
+        public async Task<IActionResult> PostCustomer([FromBody] Customer customer)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-           int x =  _repo.SaveCustomer(customer);
+           int x = await _repo.SaveCustomer(customer);
 
             return Ok();
 

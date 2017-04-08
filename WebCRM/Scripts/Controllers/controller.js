@@ -31,6 +31,7 @@
         $scope.toggleModal = function (btnClicked) {
             console.log(btnClicked);
             $scope.buttonClicked = btnClicked;
+            $scope.newCompany = angular.copy(btnClicked);
             $scope.showModal = !$scope.showModal;
         };
         //end of modal

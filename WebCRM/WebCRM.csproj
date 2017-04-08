@@ -11,6 +11,11 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-WebCRM-d523202d-4689-426f-a39b-5f25f88743c0</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\js\customerModal.html" />
+    <Content Include="wwwroot\templates\customerModal.html" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
