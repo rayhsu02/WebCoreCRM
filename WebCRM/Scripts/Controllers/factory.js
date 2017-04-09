@@ -21,8 +21,8 @@
         }
 
         function addNewCustomer(newCustomer) {
-            console.log('addNewCustomer');
-            console.log(newCustomer);
+            //console.log('addNewCustomer');
+            //console.log(newCustomer);
             return $http.post('/api/Customers/', newCustomer);
         }
 

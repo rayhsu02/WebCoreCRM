@@ -17,21 +17,23 @@
         $scope.IndustryTypes = [{Name: 'Health Care', Id: '1'}];
         $scope.init = init;
         $scope.closeModal = closeModal;
+        $scope.newCompany = { "companyName": "", "websiteUrl": "", "industryTypeId": '', "clientDesignation": true };
 
         $scope.master = {};
         $scope.reset = function () {
             console.log('reset');
-            $scope.newCompany = angular.copy($scope.master);
+            //$scope.newCompany = angular.copy($scope.master);
         };
         
 
         //modal
         $scope.showModal = false;
         $scope.buttonClicked = "";
-        $scope.toggleModal = function (btnClicked) {
-            console.log(btnClicked);
-            $scope.buttonClicked = btnClicked;
-            $scope.newCompany = angular.copy(btnClicked);
+        $scope.toggleModal = function (model) {
+            console.log(model);
+            $scope.buttonClicked = model;
+            model.industryTypeId = model.industryTypeId.toString();
+            $scope.newCompany = angular.copy(model);
             $scope.showModal = !$scope.showModal;
         };
         //end of modal
