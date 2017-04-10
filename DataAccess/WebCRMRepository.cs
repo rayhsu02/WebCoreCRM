@@ -16,6 +16,18 @@ namespace DataAccess
             _dbContext = context;
         }
 
+        public dynamic DeleteCustomer(int id)
+        {
+            var customer = _dbContext.Customer.SingleOrDefault(m => m.CustomerId == id);
+            if (customer == null)
+            {
+                return 0;
+            }
+
+            _dbContext.Customer.Remove(customer);
+            return _dbContext.SaveChangesAsync();
+        }
+
         public dynamic GetContact(int contactId)
         {
             return _dbContext.CustomerContacts.SingleOrDefault(s => s.CustomerContactId == contactId);
@@ -46,6 +58,27 @@ namespace DataAccess
             _dbContext.Entry(customer).State = EntityState.Added;
            return _dbContext.SaveChangesAsync();
           
+        }
+
+        public dynamic UpdateCustomer(Customer customer)
+        {
+            _dbContext.Entry(customer).State = EntityState.Modified;
+
+            try
+            {
+                return _dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GetCustomer(customer.CustomerId))
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 }

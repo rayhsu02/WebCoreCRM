@@ -49,40 +49,25 @@ namespace WebCRM.Controllers
             return Ok(customer);
         }
 
-        //// PUT: api/Customers/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutCustomer([FromRoute] int id, [FromBody] Customer customer)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // PUT: api/Customers/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCustomer([FromRoute] int id, [FromBody] Customer customer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    if (id != customer.CustomerId)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (id != customer.CustomerId)
+            {
+                return BadRequest();
+            }
+           await _repo.UpdateCustomer(customer);
 
-        //    _context.Entry(customer).State = EntityState.Modified;
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!CustomerExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
         // POST: api/Customers
         [HttpPost]
@@ -103,26 +88,19 @@ namespace WebCRM.Controllers
            // return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
         }
 
-        //// DELETE: api/Customers/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteCustomer([FromRoute] int id)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // DELETE: api/Customers/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCustomer([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    var customer = await _context.Customer.SingleOrDefaultAsync(m => m.CustomerId == id);
-        //    if (customer == null)
-        //    {
-        //        return NotFound();
-        //    }
+            await _repo.DeleteCustomer(id);
 
-        //    _context.Customer.Remove(customer);
-        //    await _context.SaveChangesAsync();
-
-        //    return Ok(customer);
-        //}
+            return Ok();
+        }
 
         //private bool CustomerExists(int id)
         //{

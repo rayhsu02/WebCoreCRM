@@ -14,6 +14,7 @@
         $scope.allCustomers = [];
         $scope.getAllCustomer = getAllCustomer;
         $scope.addCustomer = addCustomer;
+        $scope.deleteCustomer = deleteCustomer;
         $scope.IndustryTypes = [{Name: 'Health Care', Id: '1'}];
         $scope.init = init;
         $scope.closeModal = closeModal;
@@ -31,9 +32,16 @@
         $scope.buttonClicked = "";
         $scope.toggleModal = function (model) {
             console.log(model);
-            $scope.buttonClicked = model;
-            model.industryTypeId = model.industryTypeId.toString();
-            $scope.newCompany = angular.copy(model);
+            debugger;
+            if (model == 'new') {
+               // model = { "companyName": "", "websiteUrl": "", "industryTypeId": '', "clientDesignation": true };
+                $scope.newCompany = { "companyName": "", "websiteUrl": "", "industryTypeId": '', "clientDesignation": true };
+            } else {
+                model.industryTypeId = model.industryTypeId.toString();
+                $scope.newCompany = angular.copy(model);
+            }
+            //$scope.buttonClicked = model;
+           
             $scope.showModal = !$scope.showModal;
         };
         //end of modal
@@ -84,7 +92,34 @@
             console.log('addCustomer');
             console.log(newCompany);
 
-            crmService.addNewCustomer(newCompany)
+            if (newCompany.customerId != undefined) {
+
+                crmService.updateCustomer(newCompany)
+                    .then(function (res) {
+                        console.log(res);
+                        getAllCustomer();
+
+                        closeModal();
+                    }, function () {
+                        alert(res);
+                    });
+            } else {
+
+                crmService.addNewCustomer(newCompany)
+                    .then(function (res) {
+                        console.log(res);
+                        getAllCustomer();
+
+                        closeModal();
+                    }, function () {
+                        alert(res);
+                    });
+            }
+          
+        }
+
+        function deleteCustomer(customer) {
+            crmService.deleteCustomer(customer)
                 .then(function (res) {
                     console.log(res);
                     getAllCustomer();
@@ -93,8 +128,6 @@
                 }, function () {
                     alert(res);
                 });
-           
-          
         }
 
         function closeModal() {
@@ -102,15 +135,6 @@
             $('#myModal').modal('hide');
         }
 
-        $scope.safeApply = function (fn) {
-            var phase = this.$root.$$phase;
-            if (phase == '$apply' || phase == '$digest') {
-                if (fn && (typeof (fn) === 'function')) {
-                    fn();
-                }
-            } else {
-                this.$apply(fn);
-            }
-        };
+       
     }
 })();

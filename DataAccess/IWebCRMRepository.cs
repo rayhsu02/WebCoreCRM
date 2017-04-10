@@ -13,6 +13,10 @@ namespace DataAccess
 
         dynamic SaveCustomer(Customer customer);
 
+        dynamic UpdateCustomer(Customer customer);
+
+        dynamic DeleteCustomer(int id);
+
         dynamic GetCustomerContacts(int customerId);
 
         dynamic GetContact(int contactId);

@@ -10,7 +10,9 @@
     function crmService($http) {
         var service = {
             getAllCustomers: getAllCustomers,
-            addNewCustomer: addNewCustomer
+            addNewCustomer: addNewCustomer,
+            updateCustomer: updateCustomer,
+            deleteCustomer: deleteCustomer
         };
 
         return service;
@@ -21,9 +23,18 @@
         }
 
         function addNewCustomer(newCustomer) {
-            //console.log('addNewCustomer');
-            //console.log(newCustomer);
+          
             return $http.post('/api/Customers/', newCustomer);
+        }
+
+        function updateCustomer(customer) {
+
+            return $http.put('/api/Customers/' + customer.customerId, customer);
+        }
+
+        function deleteCustomer(customer) {
+
+            return $http.delete('/api/Customers/' + customer.customerId);
         }
 
         // private functions

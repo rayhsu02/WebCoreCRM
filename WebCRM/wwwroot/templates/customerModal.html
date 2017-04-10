@@ -40,16 +40,16 @@
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Enterprise Client Designation</label>
-                            <div class="col-lg-9" ng-init="newCompany.clientDesignation=true">
+                            <div class="col-lg-9" >
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="true" checked="" ng-model="newCompany.clientDesignation">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="true" ng-checked="newCompany.clientDesignation==true" ng-model="newCompany.clientDesignation">
                                         Yes
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="false" ng-model="newCompany.clientDesignation">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="false" ng-checked="newCompany.clientDesignation==false" ng-model="newCompany.clientDesignation">
                                         No
                                     </label>
                                 </div>

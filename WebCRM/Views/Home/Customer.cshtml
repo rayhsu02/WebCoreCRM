@@ -11,7 +11,7 @@
             <div class="form-group">
                 <div class="col-lg-12">
 
-                    <button type="submit"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add</button>
+                    <button type="submit"  class="btn btn-primary"   ng-click="toggleModal('new')">Add</button>
                     @*<button ng-click="toggleModal('Cancel')" class="btn btn-default">Cancel</button>*@
                 </div>
             </div>
@@ -33,7 +33,7 @@
                                 <td><a href="#" ng-click="toggleModal(customer)">{{customer.companyName}}</a></td>
                                 <td><a href="{{customer.websiteUrl}}">{{customer.websiteUrl}}</a></td>
                                 <td>{{customer.customerId}}</td>
-                                <td><button class="btn btn-primary">Delete</button></td>
+                                <td><button class="btn btn-primary" ng-click="deleteCustomer(customer)">Delete</button></td>
                             </tr>
                           
                         </tbody>
