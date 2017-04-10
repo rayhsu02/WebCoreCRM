@@ -4,15 +4,16 @@
 }
 
 <h2>Customer</h2>
-<section ng-app="app">
-    <div class="panel panel-primary" ng-controller="customerController">
+<section ng-app="app" ng-cloak>
+    <div class="well" ui-view></div>   
+    @*<div class="panel panel-primary" ng-controller="customerController">
         <div class="panel-heading panel-head">CUSTOMER</div>
         <div class="panel-body">
             <div class="form-group">
                 <div class="col-lg-12">
 
                     <button type="submit"  class="btn btn-primary"   ng-click="toggleModal('new')">Add</button>
-                    @*<button ng-click="toggleModal('Cancel')" class="btn btn-default">Cancel</button>*@
+                   
                 </div>
             </div>
             <div class="row" >
@@ -46,7 +47,7 @@
         <mymodal visible="showModal">            
         </mymodal>
 
-        </div>
+        </div>*@
           
             
 </section>

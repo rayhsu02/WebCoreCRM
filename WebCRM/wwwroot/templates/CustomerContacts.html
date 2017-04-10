@@ -1,0 +1,50 @@
+﻿
+<div class="modal fade" id="contactsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Contacts</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" name="contactForm" id="contactForm">
+                    <fieldset>
+                        <legend>Company Information</legend>
+                        <div class="form-group">
+                            <label for="inputContactFirstName" class="col-lg-3 control-label">First Name</label>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="inputContactFirstName" placeholder="First Name" ng-model="newContact.firstName" name="inputContactFirstName" required>
+                                <span class="text-danger" ng-show="newContact.firstName.$touched && newContact.firstName.$invalid">First Name is required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputContactLastName" class="col-lg-3 control-label">Last Name</label>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="inputContactLastName" placeholder="Last Name" ng-model="newContact.lastName" name="inputContactLastName" required>
+                                <span class="text-danger" ng-show="newContact.lastName.$touched && newContact.lastName.$invalid">Last Name is required.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputContactEmail" class="col-lg-3 control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input type="email" class="form-control" id="inputContactEmail" placeholder="Primary Email" ng-model="newContact.email" name="inputContactEmail" required>
+                                <span class="text-danger" ng-show="newContact.email.$touched && newContact.email.$invalid">Last Name is required.</span>
+                            </div>
+                        </div>
+                     
+                       
+
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addCustomer(newCompany)" ng-disabled="newContact.email.$invalid || newContact.firstName.$invalid">
+                    Save changes
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

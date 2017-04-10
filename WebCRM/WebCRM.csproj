@@ -13,7 +13,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot\css\bootstrap.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\css\bootstrap.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\css\bootstrap.min.css">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\css\bootstrap.min.css.map">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="wwwroot\js\customerModal.html" />
+    <Content Include="wwwroot\templates\CustomerContacts.html" />
+    <Content Include="wwwroot\templates\CustomerDetail.html" />
+    <Content Include="wwwroot\templates\CustomerList.html" />
     <Content Include="wwwroot\templates\customerModal.html" />
   </ItemGroup>
   <ItemGroup>
