@@ -5,16 +5,17 @@
         .module('app')
         .controller('customerController', customerController);
 
-    customerController.$inject = ['$scope', 'crmService'];
+    customerController.$inject = ['$scope', 'crmService', '$state'];
    
 
-    function customerController($scope, crmService) {
+    function customerController($scope, crmService, $state) {
 
         $scope.title = "customerController";
         $scope.allCustomers = [];
         $scope.getAllCustomer = getAllCustomer;
         $scope.addCustomer = addCustomer;
         $scope.deleteCustomer = deleteCustomer;
+        $scope.goToState = goToState;
         $scope.IndustryTypes = [{Name: 'Health Care', Id: '1'}];
         $scope.init = init;
         $scope.closeModal = closeModal;
@@ -128,6 +129,11 @@
                 }, function () {
                     alert(res);
                 });
+        }
+
+        function goToState(customer) {
+            console.log('goToState');
+            $state.go('CustomerDetail', { selectedCustomer: customer});
         }
 
         function closeModal() {
