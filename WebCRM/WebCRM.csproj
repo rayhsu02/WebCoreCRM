@@ -48,7 +48,6 @@
     <Content Include="wwwroot\lib\angular-ui-router\src\view.js" />
     <Content Include="wwwroot\lib\angular-ui-router\src\viewDirective.js" />
     <Content Include="wwwroot\lib\angular-ui-router\src\viewScroll.js" />
-    <Content Include="wwwroot\templates\CustomerContacts.html" />
     <Content Include="wwwroot\templates\CustomerContactsModal.html" />
     <Content Include="wwwroot\templates\CustomerDetail.html" />
     <Content Include="wwwroot\templates\CustomerList.html" />
