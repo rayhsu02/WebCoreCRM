@@ -25,7 +25,6 @@
     <Content Include="wwwroot\css\bootstrap.min.css.map">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="wwwroot\js\customerModal.html" />
     <Content Include="wwwroot\lib\angular-ui-router\.bower.json" />
     <Content Include="wwwroot\lib\angular-ui-router\angular-ui-router.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
