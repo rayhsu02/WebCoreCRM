@@ -12,7 +12,9 @@
             getAllCustomers: getAllCustomers,
             addNewCustomer: addNewCustomer,
             updateCustomer: updateCustomer,
-            deleteCustomer: deleteCustomer
+            deleteCustomer: deleteCustomer,
+            getCustomerContacts: getCustomerContacts,
+            addNewContact: addNewContact
         };
 
         return service;
@@ -37,6 +39,25 @@
             return $http.delete('/api/Customers/' + customer.customerId);
         }
 
+        function getCustomerContacts(customerId) {
+
+            return $http.get('/api/CustomerContacts/GetCustomerContactsByCustomerID/' + customerId).then(handleSuccess, handleError('Error getting contacts'));
+        }
+
+        function addNewContact(contact) {
+            return $http.post('/api/CustomerContacts/', contact);
+        }
+
+        function updateContact(contact) {
+
+            return $http.put('/api/CustomerContacts/' + contact.CustomerContactId, contact);
+        }
+
+        function deleteContact(contact) {
+
+            return $http.delete('/api/CustomerContacts/' + contact.CustomerContactId);
+        }
+
         // private functions
 
         function handleSuccess(res) {
@@ -49,5 +70,7 @@
                 return { success: false, message: error };
             };
         }
+
+
     }
 })();

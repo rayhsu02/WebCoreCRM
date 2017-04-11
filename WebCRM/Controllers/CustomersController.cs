@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Model;
 using DataAccess;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebCRM.Controllers
 {
     [Produces("application/json")]
     [Route("api/Customers")]
+    [Authorize]
     public class CustomersController : Controller
     {
         private readonly IWebCRMRepository _repo;
@@ -37,7 +39,7 @@ namespace WebCRM.Controllers
                 return BadRequest(ModelState);
             }
 
-            //var customer = await _context.Customer.SingleOrDefaultAsync(m => m.CustomerId == id);
+           
             var customer = await _repo.GetCustomer(id);
 
 
@@ -82,10 +84,7 @@ namespace WebCRM.Controllers
 
             return Ok();
 
-            //_context.Customer.Add(customer);
-            //await _context.SaveChangesAsync();
-
-           // return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
+          
         }
 
         // DELETE: api/Customers/5
@@ -102,9 +101,6 @@ namespace WebCRM.Controllers
             return Ok();
         }
 
-        //private bool CustomerExists(int id)
-        //{
-        //    return _context.Customer.Any(e => e.CustomerId == id);
-        //}
+        
     }
 }

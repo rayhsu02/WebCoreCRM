@@ -7,7 +7,10 @@
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
     "angular": "angularjs#v1.6.5-build.5353+sha.136a42a",
-    "angular-ui-router": "angular-ui-router#0.4.2"
-
+    "angular-ui-router": "angular-ui-router#0.4.2",
+    "ng-table": "ng-table#0.3.1"
+  },
+  "resolutions": {
+    "angular": "v1.6.5-build.5353+sha.136a42a"
   }
 }

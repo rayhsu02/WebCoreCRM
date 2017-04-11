@@ -9,7 +9,8 @@
 
         // 3rd Party Modules
         //"ngTable"
-        "ui.router"
+        "ui.router",
+        'ngTable'
     ])
         .config(config);
         //.run(['$rootScope', '$state', '$stateParams',

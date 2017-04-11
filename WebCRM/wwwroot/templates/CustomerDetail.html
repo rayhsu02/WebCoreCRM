@@ -51,15 +51,22 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
+                    <label for="inputPrimaryContact" class="col-lg-3 control-label">Primary Contact</label>
+                    <div class="col-lg-9">
+                        <input type="text" readonly class="form-control" id="inputPrimaryContact" placeholder="Primary Contact" ng-model="newCompany.companyName" name="inputPrimaryContact">
+                        <button type="button" class="btn btn-primary glyphicon glyphicon-user" ng-click="showContactModal()"></button>
+                    </div>
+                    
+                </div>
+                <!--<div class="form-group">
                     <label for="selectIndustry" class="col-lg-3 control-label">Primary Contact</label>
-                    <label for="selectIndustry" class="col-lg-3 control-label">Primary Contact</label>
+                    <label for="selectIndustry" class="col-lg-2 control-label pull-left">John Smith</label>
                     <div class="col-lg-6">
-                        <button type="button" class="btn btn-primary" ng-click="showContactModal()">Edit Contacts</button>
+                        <button type="button" class="btn btn-primary" ng-click="showContactModal()">...</button>
                       
                     </div>
-                </div>
+                </div>-->
 
                 <div class="form-group">
                        
@@ -79,3 +86,5 @@
 </div>
 
        
+<customer-contact visible="showModal">
+</customer-contact>

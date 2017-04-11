@@ -172,9 +172,7 @@ namespace DataAccess.Model
                     .HasName("PK__Customer__244E9D92CAF2AC3F");
 
                 entity.Property(e => e.CustomerContactId).HasColumnName("CustomerContactID");
-
-                entity.Property(e => e.Address).IsRequired();
-
+                
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
                 entity.Property(e => e.Email)

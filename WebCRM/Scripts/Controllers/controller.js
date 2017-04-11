@@ -5,13 +5,14 @@
         .module('app')
         .controller('customerController', customerController);
 
-    customerController.$inject = ['$scope', 'crmService', '$state'];
+    customerController.$inject = ['$scope', 'crmService', '$state', '$filter', 'NgTableParams'];
    
 
-    function customerController($scope, crmService, $state) {
+    function customerController($scope, crmService, $state, $filter, NgTableParams) {
 
         $scope.title = "customerController";
         $scope.allCustomers = [];
+        $scope.customerList = [];
         $scope.getAllCustomer = getAllCustomer;
         $scope.addCustomer = addCustomer;
         $scope.deleteCustomer = deleteCustomer;
@@ -83,7 +84,15 @@
                         $scope.allCustomers = res;
                         
                        console.log('$scope.allCustomers');
-                       console.log($scope.allCustomers)
+                       console.log($scope.allCustomers);
+
+                       $scope.customerList = new NgTableParams({
+                           // initial filter
+                           filter: { companyName: "" }
+                       }, {
+                               dataset: res
+                           });
+                       
                     }
                 });
         }

@@ -3,14 +3,17 @@
 
     angular
         .module('app')
-        .directive('newCustomer', newCustomer);
+        .directive('customerContact', customerContact);
 
-    //mymodal.$inject = ['$window'];
+    customerContact.$inject = ['$window'];
 
-    function newCustomer() {
-       
+    function customerContact($window) {
+        // Usage:
+        //     <contactDirective></contactDirective>
+        // Creates:
+        // 
         var directive = {
-            templateUrl: '/templates/customerModal.html',
+            templateUrl: '/templates/CustomerContactsModal.html',
             restrict: 'E',
             transclude: true,
             replace: true,
@@ -21,7 +24,6 @@
 
         function link(scope, element, attrs) {
 
-           
             scope.$watch(attrs.visible, function (value) {
                 if (value == true)
                     $(element).modal('show');

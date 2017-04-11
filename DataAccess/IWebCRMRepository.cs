@@ -19,6 +19,14 @@ namespace DataAccess
 
         dynamic GetCustomerContacts(int customerId);
 
+        dynamic SaveContact(CustomerContacts contact);
+
+        dynamic UpdateContact(CustomerContacts contact);
+
+        void SetPrimaryContact(int customerId, int contactId);
+
+        dynamic DeleteContact(int id);
+
         dynamic GetContact(int contactId);
 
         dynamic GetIndustryTypes();

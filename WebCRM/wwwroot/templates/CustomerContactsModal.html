@@ -7,40 +7,98 @@
                 <h4 class="modal-title">Add Contacts</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" name="contactForm" id="contactForm">
-                    <fieldset>
-                        <legend>Company Information</legend>
+                <div class="row form-group">
+                    <div class="col-lg-12">
+                        <i class="btn btn-default glyphicon glyphicon-search" ng-click="showFilter = !showFilter" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table ng-table="contacts" show-filter="showFilter" class="table table-striped table-hover ">
+                            <tr ng-repeat="contact in $data" class="active">
+
+                                <td data-title="'First Name'" sortable="'firstName'" filter="{ 'firstName': 'text' }">
+                                    {{contact.firstName}}
+                                </td>
+
+                                <td data-title="'Last Name'" sortable="'lastName'" filter="{ 'lastName': 'text' }">
+                                    <span>{{contact.lastName}}</span>
+                                </td>
+                                <td data-title="'Email'" sortable="'email'" filter="{ 'email': 'text' }">
+                                    <span>{{contact.email}}</span>
+                                </td>
+                                <td data-title="'Primary Contact'" sortable="'primaryContact'" filter="{ 'primaryContact': 'text' }">
+                                    <span>{{contact.primaryContact}}</span>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                      
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="inputContactFirstName" class="col-lg-3 control-label">First Name</label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control" id="inputContactFirstName" placeholder="First Name" ng-model="newContact.firstName" name="inputContactFirstName" required>
-                                <span class="text-danger" ng-show="newContact.firstName.$touched && newContact.firstName.$invalid">First Name is required.</span>
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary" ng-click="newContact('new')">Add</button>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputContactLastName" class="col-lg-3 control-label">Last Name</label>
-                            <div class="col-lg-9">
-                                <input type="text" class="form-control" id="inputContactLastName" placeholder="Last Name" ng-model="newContact.lastName" name="inputContactLastName" required>
-                                <span class="text-danger" ng-show="newContact.lastName.$touched && newContact.lastName.$invalid">Last Name is required.</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputContactEmail" class="col-lg-3 control-label">Email</label>
-                            <div class="col-lg-9">
-                                <input type="email" class="form-control" id="inputContactEmail" placeholder="Primary Email" ng-model="newContact.email" name="inputContactEmail" required>
-                                <span class="text-danger" ng-show="newContact.email.$touched && newContact.email.$invalid">Last Name is required.</span>
-                            </div>
-                        </div>
-                     
-                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form class="form-horizontal" name="contactForm" id="contactForm">
+                            <fieldset>
+                                <legend>Company Information</legend>
+                                <div class="form-group">
+                                    <label for="inputContactFirstName" class="col-lg-3 control-label">First Name</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" id="inputContactFirstName" placeholder="First Name" ng-model="newContact.FirstName" name="inputContactFirstName" required>
+                                        <span class="text-danger" ng-show="newContact.FirstName.$touched && newContact.FirstName.$invalid">First Name is required.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputContactLastName" class="col-lg-3 control-label">Last Name</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" id="inputContactLastName" placeholder="Last Name" ng-model="newContact.LastName" name="inputContactLastName" required>
+                                        <span class="text-danger" ng-show="newContact.LastName.$touched && newContact.LastName.$invalid">Last Name is required.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputContactEmail" class="col-lg-3 control-label">Email</label>
+                                    <div class="col-lg-9">
+                                        <input type="email" class="form-control" id="inputContactEmail" placeholder="Primary Email" ng-model="newContact.Email" name="inputContactEmail" required>
+                                        <span class="text-danger" ng-show="newContact.Email.$touched && newContact.Email.$invalid">Last Name is required.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputContactPhone" class="col-lg-3 control-label">Primary phone number</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" id="inputContactPhone" placeholder="Phone Number" ng-model="newContact.PhoneNumber" name="inputContactPhone" required>
+                                        <span class="text-danger" ng-show="newContact.PhoneNumber.$touched && newContact.PhoneNumber.$invalid">Primary Phone is required.</span>
+                                        <label>{{newContact}}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkboxContactIsPrimaryContact" class="col-lg-3 control-label">Primary Contact</label>
+                                    <div class="col-lg-9">
+                                        <input type="checkbox" class="form-control" id="checkboxContactIsPrimaryContact" ng-model="newContact.PrimaryContact" name="checkboxContactIsPrimaryContact" required>
+                                        <span class="text-danger" ng-show="newContact.PrimaryContact.$touched && newContact.PrimaryContact.$invalid">Primary Contact is required.</span>
+                                    </div>
+                                </div>
 
 
-                    </fieldset>
-                </form>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="addCustomer(newCompany)" ng-disabled="newContact.email.$invalid || newContact.firstName.$invalid">
+                <button type="button" class="btn btn-primary" ng-click="addContact(newContact)" ng-disabled="newContact.email.$invalid || newContact.firstName.$invalid">
                     Save changes
                 </button>
 
