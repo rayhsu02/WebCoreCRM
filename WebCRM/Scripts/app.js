@@ -42,13 +42,13 @@
                 url: "/route2",
                 templateUrl: "route2.html"
             })
-            .state('route2.list', {
-                url: "/list",
-                templateUrl: "route2.list.html",
-                controller: function ($scope) {
-                    $scope.things = ["A", "Set", "Of", "Things"];
-                }
-            })
+            //.state('route2.list', {
+            //    url: "/list",
+            //    templateUrl: "route2.list.html",
+            //    controller: function ($scope) {
+            //        $scope.things = ["A", "Set", "Of", "Things"];
+            //    }
+            //})
     }
 
 })();

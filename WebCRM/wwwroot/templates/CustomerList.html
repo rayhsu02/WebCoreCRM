@@ -23,7 +23,8 @@
                     <tbody ng-repeat="customer in allCustomers">
                         <tr class="active">
                             <td>{{customer.customerId}}</td>
-                            <td><a ui-sref="CustomerDetail" ng-click="goToState(customer)">{{customer.companyName}}</a></td>
+                            <!--<td><a ui-sref="CustomerDetail" ng-click="goToState(customer)">{{customer.companyName}}</a></td>-->
+                            <td><a href="" ng-click="goToState(customer)">{{customer.companyName}}</a></td>
                             <td><a href="{{customer.websiteUrl}}">{{customer.websiteUrl}}</a></td>
                             <td>{{customer.customerId}}</td>
                             <td><button class="btn btn-primary" ng-click="deleteCustomer(customer)">Delete</button></td>
@@ -36,7 +37,7 @@
         </div>
     </div>
 
-    <mymodal visible="showModal">
-    </mymodal>
+    <new-customer visible="showModal">
+    </new-customer>
 
 </div>

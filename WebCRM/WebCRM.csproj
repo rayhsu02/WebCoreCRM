@@ -26,7 +26,31 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="wwwroot\js\customerModal.html" />
+    <Content Include="wwwroot\lib\angular-ui-router\.bower.json" />
+    <Content Include="wwwroot\lib\angular-ui-router\angular-ui-router.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\lib\angular-ui-router\angular-ui-router.min.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\bower.json" />
+    <Content Include="wwwroot\lib\angular-ui-router\CHANGELOG.md" />
+    <Content Include="wwwroot\lib\angular-ui-router\CONTRIBUTING.md" />
+    <Content Include="wwwroot\lib\angular-ui-router\LICENSE" />
+    <Content Include="wwwroot\lib\angular-ui-router\README.md" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\common.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\resolve.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\state.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\stateDirectives.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\stateFilters.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\templateFactory.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\urlMatcherFactory.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\urlRouter.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\view.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\viewDirective.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\src\viewScroll.js" />
     <Content Include="wwwroot\templates\CustomerContacts.html" />
+    <Content Include="wwwroot\templates\CustomerContactsModal.html" />
     <Content Include="wwwroot\templates\CustomerDetail.html" />
     <Content Include="wwwroot\templates\CustomerList.html" />
     <Content Include="wwwroot\templates\customerModal.html" />

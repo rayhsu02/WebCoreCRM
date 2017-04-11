@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .directive('mymodal', mymodal);
+        .directive('newCustomer', newCustomer);
 
     //mymodal.$inject = ['$window'];
 
-    function mymodal() {
+    function newCustomer() {
        
         var directive = {
             templateUrl: '/templates/customerModal.html',

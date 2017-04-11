@@ -8,5 +8,6 @@
     "jquery-validation-unobtrusive": "3.2.6",
     "angular": "angularjs#v1.6.5-build.5353+sha.136a42a",
     "angular-ui-router": "angular-ui-router#0.4.2"
+
   }
 }

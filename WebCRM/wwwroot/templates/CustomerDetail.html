@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="selectIndustry" class="col-lg-3 control-label">Industry</label>
-                    <div class="c
+                   
                     <div class="col-lg-9">
                        
                         <!--<select class="form-control" id="selectIndustry" ng-model="newCompany.industryTypeId">
@@ -34,33 +34,42 @@
                                 ng-options="option.Id as option.Name for option in IndustryTypes"></select>
                     </div>
                 </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Enterprise Client Designation</label>
-                        <div class="col-lg-9">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="true" ng-checked="newCompany.clientDesignation==true" ng-model="newCompany.clientDesignation">
-                                    Yes
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="false" ng-checked="newCompany.clientDesignation==false" ng-model="newCompany.clientDesignation">
-                                    No
-                                </label>
-                            </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Enterprise Client Designation</label>
+                    <div class="col-lg-9">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="true" ng-checked="newCompany.clientDesignation==true" ng-model="newCompany.clientDesignation">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="false" ng-checked="newCompany.clientDesignation==false" ng-model="newCompany.clientDesignation">
+                                No
+                            </label>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
+                <div class="form-group">
+                    <label for="selectIndustry" class="col-lg-3 control-label">Primary Contact</label>
+                    <label for="selectIndustry" class="col-lg-3 control-label">Primary Contact</label>
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-primary" ng-click="showContactModal()">Edit Contacts</button>
+                      
+                    </div>
+                </div>
+
+                <div class="form-group">
                        
-                        <div class=" col-lg-offset-2 col-lg-10">
-                            <a  class="btn btn-default" ui-sref="CustomerList" data-dismiss="modal">CANCEL</a>
-                            <button type="button" class="btn btn-primary" ng-click="updateCustomer(newCompany)" ng-disabled="companyForm.inputCompanyName.$invalid || companyForm.inputWebsiteURL.$invalid">
-                                Save changes
-                            </button>
-                            </div>
+                    <div class=" col-lg-offset-2 col-lg-10">
+                        <a  class="btn btn-default" ui-sref="CustomerList" data-dismiss="modal">CANCEL</a>
+                        <button type="button" class="btn btn-primary" ng-click="updateCustomer(newCompany)" ng-disabled="companyForm.inputCompanyName.$invalid || companyForm.inputWebsiteURL.$invalid">
+                            Save changes
+                        </button>
                         </div>
+                    </div>
 
 
             </fieldset>
