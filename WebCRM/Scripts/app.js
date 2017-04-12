@@ -35,7 +35,7 @@
             .state('CustomerDetail', {
                 url: "/CustomerDetail",
                 templateUrl: "/templates/CustomerDetail.html",
-                params: { selectedCustomer: null, },
+                params: { selectedCustomer: null, primaryContact: null},
                 controller: "customerDetailController"
             })
 

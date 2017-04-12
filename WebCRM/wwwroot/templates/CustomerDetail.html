@@ -29,8 +29,8 @@
                         </select>-->
                         <select name="selectIndustry" class="form-control"
                                 id="selectIndustry"
-                                ng-model="newCompany.industryTypeId"
-                                ng-init=" newCompany.industryTypeId"
+                                ng-model="newCompany.customer.industryTypeId"
+                                ng-init=" newCompany.customer.industryTypeId"
                                 ng-options="option.Id as option.Name for option in IndustryTypes"></select>
                     </div>
                 </div>
@@ -54,7 +54,8 @@
                 <div class="form-group">
                     <label for="inputPrimaryContact" class="col-lg-3 control-label">Primary Contact</label>
                     <div class="col-lg-9">
-                        <input type="text" readonly class="form-control" id="inputPrimaryContact" placeholder="Primary Contact" ng-model="newCompany.companyName" name="inputPrimaryContact">
+                        <!--<input type="text" readonly class="form-control" id="inputPrimaryContact" placeholder="Primary Contact" ng-model="primaryContact.firstName" name="inputPrimaryContact">-->                     
+                        <label class="form-control text-uppercase">{{primaryContact.firstName}} {{primaryContact.lastName}}</label>
                         <button type="button" class="btn btn-primary glyphicon glyphicon-user" ng-click="showContactModal()"></button>
                     </div>
                     

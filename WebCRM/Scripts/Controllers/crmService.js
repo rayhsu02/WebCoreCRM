@@ -14,7 +14,9 @@
             updateCustomer: updateCustomer,
             deleteCustomer: deleteCustomer,
             getCustomerContacts: getCustomerContacts,
-            addNewContact: addNewContact
+            addNewContact: addNewContact,
+            updateContact: updateContact,
+            deleteContact: deleteContact
         };
 
         return service;
@@ -50,7 +52,7 @@
 
         function updateContact(contact) {
 
-            return $http.put('/api/CustomerContacts/' + contact.CustomerContactId, contact);
+            return $http.put('/api/CustomerContacts/' + contact.customerContactId, contact);
         }
 
         function deleteContact(contact) {

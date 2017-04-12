@@ -57,7 +57,16 @@ namespace DataAccess
 
         public dynamic GetCustomers()
         {
-            return _dbContext.Customer.AsEnumerable();
+            var customers = (from customer in _dbContext.Customer
+                             select new
+                             {
+                                 customer,
+                                 primaryContact = _dbContext.CustomerContacts.Where(x=>x.CustomerId == customer.CustomerId && x.PrimaryContact == true).SingleOrDefault()
+                             }
+                            ).AsEnumerable();
+
+
+            return customers;
         }
 
         public dynamic GetIndustryTypes()
@@ -68,7 +77,17 @@ namespace DataAccess
         public dynamic SaveContact(CustomerContacts contact)
         {
             _dbContext.Entry(contact).State = EntityState.Added;
-            return _dbContext.SaveChangesAsync();
+
+            if (contact.PrimaryContact == true)
+            {
+                _dbContext.SaveChanges();
+                return SetPrimaryContact(contact);
+            }
+            else
+            {
+                return _dbContext.SaveChangesAsync();
+            }
+            
         }
 
         public dynamic SaveCustomer(Customer customer)
@@ -78,13 +97,13 @@ namespace DataAccess
           
         }
 
-        public void SetPrimaryContact(int customerId, int contactId)
+        public dynamic SetPrimaryContact(CustomerContacts primaryContact)
         {
-            var contacts =_dbContext.CustomerContacts.Where(x => x.CustomerId == customerId);
+            var contacts =_dbContext.CustomerContacts.Where(x => x.CustomerId == primaryContact.CustomerId);
 
             foreach(var contact in contacts)
             {
-                if(contact.CustomerContactId == contactId)
+                if(contact.CustomerContactId == primaryContact.CustomerContactId)
                 {
                     contact.PrimaryContact = true;
                 }
@@ -94,7 +113,7 @@ namespace DataAccess
                 }
                
             }
-            _dbContext.SaveChangesAsync();
+            return _dbContext.SaveChangesAsync();
 
         }
 
@@ -104,7 +123,15 @@ namespace DataAccess
 
             try
             {
-                return _dbContext.SaveChangesAsync();
+                if (contact.PrimaryContact == true)
+                {
+                   return SetPrimaryContact(contact);
+                }
+                else
+                {
+                    return _dbContext.SaveChangesAsync();
+                }
+                   
             }
             catch (DbUpdateConcurrencyException)
             {

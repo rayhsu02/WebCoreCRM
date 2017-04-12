@@ -25,7 +25,7 @@ namespace WebCRM.Controllers
 
         // GET: api/Customers
         [HttpGet]
-        public IEnumerable<Customer> GetCustomer()
+        public IEnumerable<dynamic> GetCustomer()
         {
             return _repo.GetCustomers();
         }

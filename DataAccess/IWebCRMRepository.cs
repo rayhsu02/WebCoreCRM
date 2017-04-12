@@ -23,7 +23,7 @@ namespace DataAccess
 
         dynamic UpdateContact(CustomerContacts contact);
 
-        void SetPrimaryContact(int customerId, int contactId);
+        dynamic SetPrimaryContact(CustomerContacts primaryContact);
 
         dynamic DeleteContact(int id);
 

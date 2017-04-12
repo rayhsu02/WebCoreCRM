@@ -49,17 +49,17 @@
             <div class="col-lg-12">
 
                 <table ng-table="customerList" show-filter="showFilter" class="table table-striped table-hover ">
-                    <tr ng-repeat="customer in $data" class="active">
+                    <tr ng-repeat="c in $data" class="active">
 
-                        <td data-title="'Company Name'" sortable="'companyName'" filter="{ 'companyName': 'text' }">
-                            <a href="" ng-click="goToState(customer)">{{customer.companyName}}</a>
+                        <td data-title="'Company Name'" sortable="'customer.companyName'" filter="{ 'customer.companyName': 'text' }">
+                            <a href="" ng-click="goToState(c)">{{c.customer.companyName}}</a>
                         </td>
 
-                        <td data-title="'Web URL'" sortable="'websiteUrl'" filter="{ 'websiteUrl': 'text' }">
-                            <a href="{{customer.websiteUrl}}">{{customer.websiteUrl}}</a>
+                        <td data-title="'Web URL'" sortable="'customer.websiteUrl'" filter="{ 'customer.websiteUrl': 'text' }">
+                            <a href="{{c.customer.websiteUrl}}">{{c.customer.websiteUrl}}</a>
                         </td>
-                        <td data-title="'Primary Contact'" sortable="'companyName'" filter="{ 'companyName': 'text' }">
-                            <a href="" ng-click="goToState(customer)">{{customer.companyName}}</a>
+                        <td data-title="'Primary Contact'" sortable="'primaryContact.firstName'" filter="{ 'primaryContact.firstName': 'text' }">
+                            <a href="" ng-click="goToState(c)">{{c.primaryContact.firstName}} {{c.primaryContact.lastName}}</a>
                         </td>
                      
 
