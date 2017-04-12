@@ -9,7 +9,7 @@ using DataAccess.Model;
 using Microsoft.AspNetCore.Authorization;
 using DataAccess;
 
-namespace WebCRM.Controllers
+namespace WebCRM.Controllers.api
 {
     [Produces("application/json")]
     [Route("api/CustomerContacts")]

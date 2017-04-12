@@ -35,7 +35,8 @@
                                         id="selectIndustry"
                                         ng-model="newCompany.industryTypeId"
                                         ng-init=" newCompany.industryTypeId"
-                                        ng-options="option.Id as option.Name for option in IndustryTypes"></select>
+                                        ng-options="option.industryTypeId as option.name for option in IndustryTypes" required></select>
+                                <span class="text-danger" ng-show="companyForm.selectIndustry.$touched && companyForm.selectIndustry.$invalid">The Industry is required.</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,7 +63,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="addCustomer(newCompany)" ng-disabled="companyForm.inputCompanyName.$invalid || companyForm.inputWebsiteURL.$invalid">
+                <button type="button" class="btn btn-primary" ng-click="addCustomer(newCompany)" ng-disabled="companyForm.inputCompanyName.$invalid || companyForm.inputWebsiteURL.$invalid || companyForm.selectIndustry.$invalid">
                     Save changes
                 </button>
 

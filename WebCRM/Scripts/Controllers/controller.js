@@ -5,10 +5,10 @@
         .module('app')
         .controller('customerController', customerController);
 
-    customerController.$inject = ['$scope', 'crmService', '$state', '$filter', 'NgTableParams'];
+    customerController.$inject = ['$scope', 'crmService', '$state', '$filter', 'NgTableParams', '$window'];
    
 
-    function customerController($scope, crmService, $state, $filter, NgTableParams) {
+    function customerController($scope, crmService, $state, $filter, NgTableParams, $window) {
 
         $scope.title = "customerController";
         $scope.allCustomers = [];
@@ -17,10 +17,12 @@
         $scope.addCustomer = addCustomer;
         $scope.deleteCustomer = deleteCustomer;
         $scope.goToState = goToState;
-        $scope.IndustryTypes = [{Name: 'Health Care', Id: '1'}];
+        $scope.IndustryTypes = [];
+        $scope.getIndustryTypes = getIndustryTypes;
         $scope.init = init;
         $scope.closeModal = closeModal;
         $scope.newCompany = { "companyName": "", "websiteUrl": "", "industryTypeId": '', "clientDesignation": true };
+        $scope.redirectTo = redirectTo;
 
         $scope.master = {};
         $scope.reset = function () {
@@ -52,6 +54,7 @@
             console.log('call init');
 
             getAllCustomer();
+            getIndustryTypes();
             $scope.reset();
         }
 
@@ -150,6 +153,19 @@
             $('#myModal').modal('hide');
         }
 
-       
+        function redirectTo(url) {
+            $window.open('http://' + url, '_blank');
+        };
+
+        function getIndustryTypes() {
+            crmService.getIndustryTypes()
+                .then(function (res) {
+                    console.log(res);
+                    $scope.IndustryTypes = res;
+                  
+                }, function () {
+                    alert(res);
+                });
+        }
     }
 })();

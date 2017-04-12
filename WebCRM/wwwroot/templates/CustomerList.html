@@ -56,12 +56,13 @@
                         </td>
 
                         <td data-title="'Web URL'" sortable="'customer.websiteUrl'" filter="{ 'customer.websiteUrl': 'text' }">
-                            <a href="{{c.customer.websiteUrl}}">{{c.customer.websiteUrl}}</a>
+                            <a href="#" ng-click="redirectTo(c.customer.websiteUrl)">{{c.customer.websiteUrl}}</a>
                         </td>
                         <td data-title="'Primary Contact'" sortable="'primaryContact.firstName'" filter="{ 'primaryContact.firstName': 'text' }">
-                            <a href="" ng-click="goToState(c)">{{c.primaryContact.firstName}} {{c.primaryContact.lastName}}</a>
+                            {{c.primaryContact.firstName}} {{c.primaryContact.lastName}}
+                           
                         </td>
-                     
+                        <td><button class="btn btn-sm btn-warning" ng-click="deleteCustomer(c.customer)">Delete</button></td>
 
                     </tr>
                 </table>

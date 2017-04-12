@@ -9,11 +9,11 @@ using DataAccess.Model;
 using DataAccess;
 using Microsoft.AspNetCore.Authorization;
 
-namespace WebCRM.Controllers
+namespace WebCRM.Controllers.api
 {
     [Produces("application/json")]
     [Route("api/Customers")]
-    [Authorize]
+    //[Authorize]
     public class CustomersController : Controller
     {
         private readonly IWebCRMRepository _repo;

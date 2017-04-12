@@ -19,8 +19,12 @@
         $scope.newCompany = $state.params.selectedCustomer;
         $scope.primaryContact = $state.params.primaryContact;
         $scope.updateCustomer = updateCustomer;
-        $scope.IndustryTypes = [{ Name: 'Health Care', Id: '1' }];
+        $scope.IndustryTypes = [];
+        $scope.getIndustryTypes = getIndustryTypes;
+        $scope.deleteContact = deleteContact;
+       
         $scope.newContact = { "firstName": "", "lastName": "", "email": "", "phoneNumber": "", "primaryContact": false, "customerId": $scope.newCompany.customerId };
+        $scope.phoneNumbr = /^\+?\d{2}[- ]?\d{3}[- ]?\d{5}$/;
         $scope.showContactModal = showContactModal;
         $scope.addContact = addContact;
         $scope.resetContact = resetContact;
@@ -31,7 +35,7 @@
 
         function activate() {
 
-           
+            getIndustryTypes();
         }
         //modal
         $scope.showModal = false;
@@ -129,7 +133,7 @@
                     $scope.contacts = new NgTableParams({
                         // initial filter
                         //filter: { firstName: "" }
-                        count: 5
+                        //count: 5
                     }, {
                             dataset: res
                         });
@@ -143,6 +147,28 @@
             console.log('getContact');
             console.log(contact);
             $scope.newContact = contact;
+        }
+
+        function getIndustryTypes() {
+            crmService.getIndustryTypes()
+                .then(function (res) {
+                    console.log(res);
+                    $scope.IndustryTypes = res;
+
+                }, function () {
+                    alert(res);
+                });
+        }
+
+        function deleteContact(contact) {
+            crmService.deleteContact(contact)
+                .then(function (res) {
+
+                    getContactsList($scope.newCompany.customerId);
+
+                }, function () {
+                    alert(res);
+                });
         }
     }
 })();

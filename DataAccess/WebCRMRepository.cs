@@ -18,7 +18,7 @@ namespace DataAccess
 
         public dynamic DeleteContact(int id)
         {
-            var contact = GetContact(id);
+            var contact = _dbContext.CustomerContacts.SingleOrDefault(s => s.CustomerContactId == id);
             if (contact == null)
             {
                 return 0;

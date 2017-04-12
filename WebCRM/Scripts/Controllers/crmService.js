@@ -8,6 +8,8 @@
     crmService.$inject = ['$http'];
 
     function crmService($http) {
+        
+
         var service = {
             getAllCustomers: getAllCustomers,
             addNewCustomer: addNewCustomer,
@@ -16,7 +18,8 @@
             getCustomerContacts: getCustomerContacts,
             addNewContact: addNewContact,
             updateContact: updateContact,
-            deleteContact: deleteContact
+            deleteContact: deleteContact,
+            getIndustryTypes: getIndustryTypes
         };
 
         return service;
@@ -56,9 +59,17 @@
         }
 
         function deleteContact(contact) {
-
-            return $http.delete('/api/CustomerContacts/' + contact.CustomerContactId);
+            console.log('deleteContact');
+            console.log(contact);
+            return $http.delete('/api/CustomerContacts/' + contact.customerContactId);
         }
+
+        function getIndustryTypes() {
+
+            return $http.get('/api/IndustryTypes/').then(handleSuccess, handleError('Error getting Industry Types'));
+        }
+
+        
 
         // private functions
 
