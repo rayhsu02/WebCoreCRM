@@ -29,6 +29,16 @@ namespace DataAccess
 
         dynamic GetContact(int contactId);
 
+        dynamic SaveCustomerDocument(CustomerDocument doc);
+
+        dynamic GetCustomerDocuments(int customerId);
+
+        dynamic UpdateCustomerDocument(CustomerDocument doc);
+
+        dynamic DeleteCustomerDocument(string id);
+
+        dynamic GetCustomerDocumentById(string docId);
+
         dynamic GetIndustryTypes();
 
        

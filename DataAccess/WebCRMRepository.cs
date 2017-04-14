@@ -40,6 +40,19 @@ namespace DataAccess
             return _dbContext.SaveChangesAsync();
         }
 
+        public dynamic DeleteCustomerDocument(string id)
+        {
+            var gDocID = Guid.Parse(id);
+            var document = _dbContext.CustomerDocument.SingleOrDefault(m => m.FileId == gDocID);
+            if (document == null)
+            {
+                return 0;
+            }
+
+            _dbContext.CustomerDocument.Remove(document);
+            return _dbContext.SaveChangesAsync();
+        }
+
         public dynamic GetContact(int contactId)
         {
             return _dbContext.CustomerContacts.SingleOrDefaultAsync(s => s.CustomerContactId == contactId);
@@ -53,6 +66,17 @@ namespace DataAccess
         public dynamic GetCustomerContacts(int customerId)
         {
             return _dbContext.CustomerContacts.Where(x=>x.CustomerId == customerId).AsEnumerable();
+        }
+
+        public dynamic GetCustomerDocumentById(string docId)
+        {
+            var gDocID = Guid.Parse(docId);
+            return _dbContext.CustomerDocument.Where(x => x.FileId == gDocID).SingleOrDefaultAsync();
+        }
+
+        public dynamic GetCustomerDocuments(int customerId)
+        {
+            return _dbContext.CustomerDocument.Where(x => x.CustomerId == customerId).AsEnumerable();
         }
 
         public dynamic GetCustomers()
@@ -95,6 +119,12 @@ namespace DataAccess
             _dbContext.Entry(customer).State = EntityState.Added;
            return _dbContext.SaveChangesAsync();
           
+        }
+
+        public dynamic SaveCustomerDocument(CustomerDocument doc)
+        {
+            _dbContext.Entry(doc).State = EntityState.Added;
+            return _dbContext.SaveChangesAsync();
         }
 
         public dynamic SetPrimaryContact(CustomerContacts primaryContact)
@@ -157,6 +187,27 @@ namespace DataAccess
             catch (DbUpdateConcurrencyException)
             {
                 if (!GetCustomer(customer.CustomerId))
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+        public dynamic UpdateCustomerDocument(CustomerDocument doc)
+        {
+            _dbContext.Entry(doc).State = EntityState.Modified;
+
+            try
+            {
+                return _dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GetCustomerDocumentById(doc.FileId.ToString()))
                 {
                     return null;
                 }

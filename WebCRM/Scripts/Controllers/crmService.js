@@ -20,7 +20,10 @@
             updateContact: updateContact,
             deleteContact: deleteContact,
             getIndustryTypes: getIndustryTypes,
-            addFile: addFile
+            addFile: addFile,
+            getCustomerDocumentsByCustomerID: getCustomerDocumentsByCustomerID,
+            deleteDocument: deleteDocument,
+            getCustomerDocumentByDocId: getCustomerDocumentByDocId
         };
 
         return service;
@@ -83,10 +86,24 @@
             console.log('addFile data');
             console.log(fd);
 
-            $http.post("/api/CustomerDocuments/", fd, {
+           return $http.post("/api/CustomerDocuments/", fd, {
                 headers: { 'Content-Type': undefined },
                 transformRequest: angular.identity
             });
+        }
+
+        function getCustomerDocumentsByCustomerID(customerId) {
+            return $http.get('/api/CustomerDocuments/GetCustomerDocumentsByCustomerID/' + customerId).then(handleSuccess, handleError('Error getting documents'));
+        }
+
+        function getCustomerDocumentByDocId(docId) {
+
+            return $http.get('/api/CustomerDocuments/' + JSON.stringify(docId)).then(handleSuccess, handleError('Error getting Document')); 
+        }
+
+        function deleteDocument(document) {
+           
+            return $http.delete('/api/CustomerDocuments/' + document.fileId);
         }
 
         // private functions

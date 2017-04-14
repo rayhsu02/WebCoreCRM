@@ -5,9 +5,10 @@ namespace DataAccess.Model
 {
     public partial class CustomerDocument
     {
-        public int FilePathId { get; set; }
+        public Guid FileId { get; set; }
         public string FileName { get; set; }
-        public string FilePath { get; set; }
+        public byte[] FileContent { get; set; }
+        public string ContentType { get; set; }
         public int CustomerId { get; set; }
     }
 }

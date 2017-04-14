@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.Model;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using DataAccess;
 
 namespace WebCRM.Controllers.api
 {
@@ -15,154 +16,123 @@ namespace WebCRM.Controllers.api
     [Route("api/CustomerDocuments")]
     public class CustomerDocumentsController : Controller
     {
-        private readonly WebCRMDBContext _context;
+        private readonly IWebCRMRepository _repo;
         private IHostingEnvironment _environment;
 
-        public CustomerDocumentsController(WebCRMDBContext context, IHostingEnvironment environment)
+        public CustomerDocumentsController(IWebCRMRepository repo, IHostingEnvironment environment)
         {
-            _context = context;
+            _repo = repo;
             _environment = environment;
         }
 
         // GET: api/CustomerDocuments
         [HttpGet]
-        public IEnumerable<CustomerDocument> GetCustomerDocument()
+        [Route("~/api/CustomerDocuments/GetCustomerDocumentsByCustomerID/{id}")]
+        public IEnumerable<CustomerDocument> GetCustomerDocumentsByCustomerID([FromRoute] int id)
         {
-            return _context.CustomerDocument;
+            return _repo.GetCustomerDocuments(id);
         }
 
         // GET: api/CustomerDocuments/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCustomerDocument([FromRoute] int id)
+        public async Task<IActionResult> GetCustomerDocument([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var customerDocument = await _context.CustomerDocument.SingleOrDefaultAsync(m => m.FilePathId == id);
+            CustomerDocument customerDocument = await _repo.GetCustomerDocumentById(id);
 
             if (customerDocument == null)
             {
                 return NotFound();
             }
 
-            return Ok(customerDocument);
+            var stream = customerDocument.FileContent;
+            var response = File(stream, customerDocument.ContentType); // FileStreamResult
+            return response;
+
+           
         }
 
         // PUT: api/CustomerDocuments/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomerDocument([FromRoute] int id, [FromBody] CustomerDocument customerDocument)
+        public async Task<IActionResult> PutCustomerDocument([FromRoute] string id, [FromBody] CustomerDocument customerDocument)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != customerDocument.FilePathId)
-            {
-                return BadRequest();
-            }
+            //if (id != customerDocument.FileId)
+            //{
+            //    return BadRequest();
+            //}
 
-            _context.Entry(customerDocument).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CustomerDocumentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+           await _repo.UpdateCustomerDocument(customerDocument);
 
             return NoContent();
         }
 
-        //// POST: api/CustomerDocuments
-        //[HttpPost]
-        //public async Task<IActionResult> PostCustomerDocument([FromBody] CustomerDocument customerDocument)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    _context.CustomerDocument.Add(customerDocument);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtAction("GetCustomerDocument", new { id = customerDocument.FilePathId }, customerDocument);
-        //}
 
         [HttpPost]
         [Consumes("multipart/form-data", "application/json")]
         public async Task<IActionResult> PostCustomerDocument()
         {
-            //Read all files from angularjs FormData post request
+           
             var files = Request.Form.Files;
             var strigValue = Request.Form.Keys;
-            var customerId = Convert.ToString(Request.Form["customerId"]);
+            var customerId = Convert.ToInt32(Request.Form["customerId"]);
 
-            var uploads = Path.Combine(_environment.WebRootPath, "uploads");
+            //var uploads = Path.Combine(_environment.WebRootPath, "uploads");
 
             foreach(var f in files)
             {
-                using (var fileStream = new FileStream(Path.Combine(uploads, f.FileName), FileMode.Create))
+               
+                var customerDoc = new CustomerDocument
                 {
-                    await f.CopyToAsync(fileStream);
+                    CustomerId = customerId,
+                    FileName = f.FileName,
+                    ContentType = f.ContentType
+                };
+                
+                using (var fileStream = f.OpenReadStream())
+                using (var ms = new MemoryStream())
+                {
+                    fileStream.CopyTo(ms);
+                    var fileBytes = ms.ToArray();
+                    customerDoc.FileContent = fileBytes;
+                    await _repo.SaveCustomerDocument(customerDoc);
                 }
+
+                //using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                //{
+                //    await f.CopyToAsync(fileStream);
+
+                //    await _repo.SaveCustomerDocument(customerDoc);
+                //}
             }
           
-            return Ok();
+            return Ok(true);
 
         }
 
-        //// POST: api/CustomerDocuments
-        //[HttpPost]
-        //[Consumes("multipart/form-data", "application/json")]
-        //public async Task<IActionResult> PostCustomerDocument(IFormFile file)
-        //{
-        //    //var stream = file.OpenReadStream();
-        //    //var name = file.FileName;
-
-        //    var uploads = Path.Combine(_environment.WebRootPath, "uploads");
-        //    using (var fileStream = new FileStream(Path.Combine(uploads, file.FileName), FileMode.Create))
-        //    {
-        //        await file.CopyToAsync(fileStream);
-        //    }
-        //    return Ok(); //null just to make error free
-        //}
-
         // DELETE: api/CustomerDocuments/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCustomerDocument([FromRoute] int id)
+        public async Task<IActionResult> DeleteCustomerDocument([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var customerDocument = await _context.CustomerDocument.SingleOrDefaultAsync(m => m.FilePathId == id);
-            if (customerDocument == null)
-            {
-                return NotFound();
-            }
 
-            _context.CustomerDocument.Remove(customerDocument);
-            await _context.SaveChangesAsync();
+            await _repo.DeleteCustomerDocument(id);
 
-            return Ok(customerDocument);
+            return Ok();
+           
         }
 
-        private bool CustomerDocumentExists(int id)
-        {
-            return _context.CustomerDocument.Any(e => e.FilePathId == id);
-        }
     }
 }
