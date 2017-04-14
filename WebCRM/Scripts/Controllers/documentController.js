@@ -17,6 +17,7 @@
         $scope.documentList = [];
         $scope.deleteDocument = deleteDocument;
         $scope.viewFile = viewFile;
+        $scope.requestSignOnDocument = requestSignOnDocument;
 
         activate();
 
@@ -79,13 +80,17 @@
 
             $window.open('/api/CustomerDocuments/' + document.fileId);
 
-            //crmService.getCustomerDocumentByDocId(document.filePathId)
-            //    .then(function (data) {
-            //        $window.open(data);;
+           
+        }
 
-            //    }, function () {
-            //        alert(data);
-            //    });
+        function requestSignOnDocument(document) {
+            crmService.requestSignatureOnDocument(document)
+                .then(function (res) {
+                    console.log('requestSignOnDocument sent');
+
+                }, function () {
+                    alert(res);
+                });
         }
     }
 })();

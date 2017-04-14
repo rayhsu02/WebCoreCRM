@@ -23,7 +23,8 @@
             addFile: addFile,
             getCustomerDocumentsByCustomerID: getCustomerDocumentsByCustomerID,
             deleteDocument: deleteDocument,
-            getCustomerDocumentByDocId: getCustomerDocumentByDocId
+            getCustomerDocumentByDocId: getCustomerDocumentByDocId,
+            requestSignatureOnDocument: requestSignatureOnDocument
         };
 
         return service;
@@ -98,12 +99,18 @@
 
         function getCustomerDocumentByDocId(docId) {
 
-            return $http.get('/api/CustomerDocuments/' + JSON.stringify(docId)).then(handleSuccess, handleError('Error getting Document')); 
+            return $http.get('/api/CustomerDocuments/' + docId).then(handleSuccess, handleError('Error getting Document')); 
         }
 
         function deleteDocument(document) {
            
             return $http.delete('/api/CustomerDocuments/' + document.fileId);
+        }
+
+        function requestSignatureOnDocument(document) {
+
+            return $http.get('/api/CustomerDocuments/RequestSignatureOnDocument/' + document.fileId).then(handleSuccess, handleError('Error requestSignatureOnDocument')); 
+
         }
 
         // private functions

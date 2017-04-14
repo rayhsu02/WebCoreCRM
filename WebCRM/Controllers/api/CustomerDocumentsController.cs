@@ -9,6 +9,7 @@ using DataAccess.Model;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using DataAccess;
+using WebCRM.DocusignClient;
 
 namespace WebCRM.Controllers.api
 {
@@ -133,6 +134,30 @@ namespace WebCRM.Controllers.api
             return Ok();
            
         }
+
+        [HttpGet]
+        [Route("~/api/CustomerDocuments/RequestSignatureOnDocument/{id}")]
+        public async Task<IActionResult> RequestSignatureOnDocument([FromRoute] string id)
+        {
+            DocusignAPIClient client = new DocusignAPIClient();
+
+            CustomerDocument customerDocument = await _repo.GetCustomerDocumentById(id);
+
+            if (customerDocument == null)
+            {
+                return NotFound();
+            }
+
+            var stream = customerDocument.FileContent;
+
+            string toEmail = "rayhsu02@yahoo.com";
+
+            client.requestSignatureOnDocumentTest(customerDocument.FileName, customerDocument.FileContent, "Ray Hsu", toEmail);
+
+            return Ok();
+        }
+
+
 
     }
 }

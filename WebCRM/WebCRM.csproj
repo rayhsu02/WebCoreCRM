@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\sdk\src\main\csharp\DocuSign\eSign\DocuSign.eSign.csproj" />
   </ItemGroup>
 
 </Project>
