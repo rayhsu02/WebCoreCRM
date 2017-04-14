@@ -19,7 +19,8 @@
             addNewContact: addNewContact,
             updateContact: updateContact,
             deleteContact: deleteContact,
-            getIndustryTypes: getIndustryTypes
+            getIndustryTypes: getIndustryTypes,
+            addFile: addFile
         };
 
         return service;
@@ -69,7 +70,24 @@
             return $http.get('/api/IndustryTypes/').then(handleSuccess, handleError('Error getting Industry Types'));
         }
 
-        
+        function addFile(fileUpload, customerId) {
+           
+            var files = fileUpload.files;
+            var fd = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                fd.append(files[i].name, files[i]);
+            }
+
+            fd.append("customerId", JSON.stringify(customerId));
+
+            console.log('addFile data');
+            console.log(fd);
+
+            $http.post("/api/CustomerDocuments/", fd, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            });
+        }
 
         // private functions
 

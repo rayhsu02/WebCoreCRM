@@ -52,7 +52,7 @@
                     <tr ng-repeat="c in $data" class="active">
 
                         <td data-title="'Company Name'" sortable="'customer.companyName'" filter="{ 'customer.companyName': 'text' }">
-                            <a href="" ng-click="goToState(c)">{{c.customer.companyName}}</a>
+                            <a href="" ng-click="goToState('CustomerDetail',c)">{{c.customer.companyName}}</a>
                         </td>
 
                         <td data-title="'Web URL'" sortable="'customer.websiteUrl'" filter="{ 'customer.websiteUrl': 'text' }">
@@ -63,7 +63,7 @@
                            
                         </td>
                         <td><button class="btn btn-sm btn-warning" ng-click="deleteCustomer(c.customer)">Delete</button></td>
-
+                        <td><button class="btn btn-sm btn-primary glyphicon glyphicon-book" ng-click="goToState('DocumentList',c)">Contract</button></td>
                     </tr>
                 </table>
             </div>

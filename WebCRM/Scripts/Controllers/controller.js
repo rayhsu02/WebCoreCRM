@@ -143,9 +143,9 @@
                 });
         }
 
-        function goToState(model) {
+        function goToState(state, model) {
             console.log('goToState');
-            $state.go('CustomerDetail', { selectedCustomer: model.customer, primaryContact: model.primaryContact});
+            $state.go(state, { selectedCustomer: model.customer, primaryContact: model.primaryContact});
         }
 
         function closeModal() {

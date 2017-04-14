@@ -2,12 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-
 namespace DataAccess.Model
 {
     public partial class WebCRMDBContext : DbContext
@@ -21,18 +15,14 @@ namespace DataAccess.Model
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<CustomerContacts> CustomerContacts { get; set; }
+        public virtual DbSet<CustomerDocument> CustomerDocument { get; set; }
         public virtual DbSet<IndustryType> IndustryType { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        //    optionsBuilder.UseSqlServer(@"Server=PCFS-DT-12\SQLEXPRESS;Database=WebCRMDB;Trusted_Connection=True;");
-        //}
-
-        public WebCRMDBContext(DbContextOptions<WebCRMDBContext> options)
-    : base(options)
-        { }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=WebCRMDB;Trusted_Connection=True;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -172,7 +162,7 @@ namespace DataAccess.Model
                     .HasName("PK__Customer__244E9D92CAF2AC3F");
 
                 entity.Property(e => e.CustomerContactId).HasColumnName("CustomerContactID");
-                
+
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
                 entity.Property(e => e.Email)
@@ -188,6 +178,16 @@ namespace DataAccess.Model
                     .HasMaxLength(512);
 
                 entity.Property(e => e.PhoneNumber).IsRequired();
+            });
+
+            modelBuilder.Entity<CustomerDocument>(entity =>
+            {
+                entity.HasKey(e => e.FilePathId)
+                    .HasName("PK_CustomerDocument");
+
+                entity.Property(e => e.FileName).IsRequired();
+
+                entity.Property(e => e.FilePath).IsRequired();
             });
 
             modelBuilder.Entity<IndustryType>(entity =>

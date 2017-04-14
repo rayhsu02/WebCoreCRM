@@ -39,9 +39,11 @@
                 controller: "customerDetailController"
             })
 
-            .state('route2', {
-                url: "/route2",
-                templateUrl: "route2.html"
+            .state('DocumentList', {
+                url: "/DocumentList",
+                templateUrl: "/templates/DocumentList.html",
+                params: { selectedCustomer: null },
+                controller: "documentController"
             })
             //.state('route2.list', {
             //    url: "/list",
