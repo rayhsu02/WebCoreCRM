@@ -53,6 +53,7 @@
     <Content Include="wwwroot\templates\CustomerList.html" />
     <Content Include="wwwroot\templates\customerModal.html" />
     <Content Include="wwwroot\templates\DocumentList.html" />
+    <Content Include="wwwroot\templates\DocusignModal.html" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

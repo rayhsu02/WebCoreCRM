@@ -34,7 +34,11 @@
                         <td data-title="'File Name'" sortable="'fileName'" filter="{ 'fileName': 'text' }">
                             <a href="" ng-click="viewFile(c)">{{c.fileName}}</a>
                         </td>
+
+                        <td><button class="btn btn-sm btn-primary glyphicon glyphicon-file" title="View Document" ng-click="viewFile(c)"></button></td>
                         <td><button class="btn btn-sm btn-primary glyphicon glyphicon-send" title="Request Sign Document" ng-click="requestSignOnDocument(c)"></button></td>
+
+                        <td><button class="btn btn-sm btn-primary glyphicon glyphicon-check" title="Request Sign Document" ng-click="showDocSignModal(c)"></button></td>
                        
                         <td><button class="btn btn-sm btn-warning" ng-click="deleteDocument(c)">Delete</button></td>
                     </tr>
@@ -45,3 +49,5 @@
 
         </div>
 
+<send-sign visible="showModal">
+</send-sign>

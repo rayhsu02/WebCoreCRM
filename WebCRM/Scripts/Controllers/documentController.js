@@ -18,6 +18,9 @@
         $scope.deleteDocument = deleteDocument;
         $scope.viewFile = viewFile;
         $scope.requestSignOnDocument = requestSignOnDocument;
+        $scope.showDocSignModal = showDocSignModal;
+        //modal
+        $scope.showModal = false;
 
         activate();
 
@@ -91,6 +94,21 @@
                 }, function () {
                     alert(res);
                 });
+        }
+
+        function showDocSignModal(model) {
+
+            console.log('showDocSignModal');
+            
+            //$scope.buttonClicked = model;
+
+            $scope.showModal = !$scope.showModal;
+
+          
+
+            if ($scope.showModal) {
+              
+            }
         }
     }
 })();
