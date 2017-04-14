@@ -24,7 +24,8 @@
             getCustomerDocumentsByCustomerID: getCustomerDocumentsByCustomerID,
             deleteDocument: deleteDocument,
             getCustomerDocumentByDocId: getCustomerDocumentByDocId,
-            requestSignatureOnDocument: requestSignatureOnDocument
+            requestSignatureOnDocument: requestSignatureOnDocument,
+            sendRequestSignatureOnDocument: sendRequestSignatureOnDocument
         };
 
         return service;
@@ -110,6 +111,26 @@
         function requestSignatureOnDocument(document) {
 
             return $http.get('/api/CustomerDocuments/RequestSignatureOnDocument/' + document.fileId).then(handleSuccess, handleError('Error requestSignatureOnDocument')); 
+
+        }
+
+        function sendRequestSignatureOnDocument(document, recipient) {
+
+            var data = {
+                "DocId": document.fileId,
+                "Email": recipient.Email,
+                "Name": recipient.Name
+            };
+            //data.append("docId", document.fileId);
+            //data.append("recipientEmail", recipient.Email);
+            //data.append("recipientName", recipient.Name);
+
+            //console.log(data);
+
+
+            return $http.post("/api/CustomerDocuments/SendRequestSignatureOnDocument/", data);
+
+            //return $http.post('/api/CustomerDocuments/SendRequestSignatureOnDocument/' + document.fileId, recipient).then(handleSuccess, handleError('Error sendRequestSignatureOnDocument'));
 
         }
 

@@ -5,9 +5,9 @@
         .module('app')
         .controller('documentController', documentController);
 
-    documentController.$inject = ['$scope', 'crmService', '$state', '$filter', 'NgTableParams', '$window'];
+    documentController.$inject = ['$scope', 'crmService', '$state', '$filter', 'NgTableParams', '$window', '$timeout'];
 
-    function documentController($scope, crmService, $state, $filter, NgTableParams, $window) {
+    function documentController($scope, crmService, $state, $filter, NgTableParams, $window, $timeout) {
         /* jshint validthis:true */
         //var vm = this;
         //vm.title = 'documentController';
@@ -19,6 +19,10 @@
         $scope.viewFile = viewFile;
         $scope.requestSignOnDocument = requestSignOnDocument;
         $scope.showDocSignModal = showDocSignModal;
+        $scope.selectedDocument;
+        $scope.SendRequestSignOnDocument = SendRequestSignOnDocument;
+        $scope.recipient = { "Name": "", "Email": "" };
+        $scope.requestSent = false;
         //modal
         $scope.showModal = false;
 
@@ -96,9 +100,31 @@
                 });
         }
 
-        function showDocSignModal(model) {
+        function SendRequestSignOnDocument(recipient) {
+
+            console.log('recipient');
+            console.log(recipient);
+
+            crmService.sendRequestSignatureOnDocument($scope.selectedDocument, recipient)
+                .then(function (res) {
+                   // alert('Request Sent.');
+                    $scope.requestSent = true;
+
+                    $timeout(function () {
+                        $scope.requestSent = false;
+                    }, 2000);
+
+                }, function () {
+                    alert(res);
+                });
+        }
+
+        function showDocSignModal(document) {
+
+            $scope.selectedDocument = document;
 
             console.log('showDocSignModal');
+            console.log($scope.selectedDocument);
             
             //$scope.buttonClicked = model;
 
